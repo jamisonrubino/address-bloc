@@ -35,6 +35,7 @@ class MenuController
         search_entries
         main_menu
       when 4
+        system "clear"
         view_entry_by_num
         main_menu
       when 5
@@ -93,11 +94,14 @@ class MenuController
 
   def view_entry_by_num
     puts "View entry number:"
-    n = gets.to_i
-    unless n > (address_book.entries.length-1) || n < 1
-      puts "#{address_book.entries[n-1]}"
+    n = gets.chomp.to_i
+    unless n > (@address_book.entries.length-1) || n < 1
+      puts "#{@address_book.entries[n-1]}"
+      puts "Press enter to return to the main menu"
+      gets.chomp
+      system "clear"
     else
-      puts "Sorry, that is not a valid input."
+      puts "#{n} is not a valid input."
       view_entry_by_num
     end
 
