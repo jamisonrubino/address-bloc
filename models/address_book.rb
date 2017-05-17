@@ -1,4 +1,5 @@
  require_relative 'entry.rb'
+ require "csv"
 
 class AddressBook
   attr_reader :entries
@@ -24,5 +25,16 @@ class AddressBook
   def remove_entry(name, phone_number, email)
     # entries.delete_if {|entry| entry.name==name && entry.phone_number==phone_number && entry.email==email}
     entries.each_index { |i| entries.delete_at(i) if entries[i].name==name && entries[i].phone_number==phone_number && entries[i].email==email }
+  end
+
+  def import_from_csv(file_name)
+    # Implementation goes here
+    csv_text = File.read(file_name)
+    csv = CSV.parse(csv_text, headers: true, skip_blanks: true)
+  # #8
+    csv.each do |row|
+      row_hash = row.to_hash
+      add_entry(row_hash["name"], row_hash["phone_number"], row_hash["email"])
+    end
   end
 end
