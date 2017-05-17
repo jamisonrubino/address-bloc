@@ -49,6 +49,7 @@ RSpec.describe AddressBook do
 
   describe "#remove_entry" do
     it "removes given entry from the address book" do
+      
       book.add_entry('Ada Lovelace', '010.012.1815', 'augusta.king@lovelace.com')
       book.remove_entry('Ada Lovelace', '010.012.1815', 'augusta.king@lovelace.com')
 
@@ -60,7 +61,7 @@ RSpec.describe AddressBook do
   describe "#import_from_csv" do
     it "imports the correct number of entries" do
       # #3
-      book.import_from_csv("../models/entries.csv")
+      book.import_from_csv(".entries.csv")
       book_size = book.entries.size
 
       # Check the size of the entries in AddressBook
@@ -68,7 +69,7 @@ RSpec.describe AddressBook do
     end
 
     it "imports the 1st entry" do
-      book.import_from_csv("../models/entries.csv")
+      book.import_from_csv("entries.csv")
       # Check the first entry
       entry_one = book.entries[0]
 
@@ -78,14 +79,14 @@ RSpec.describe AddressBook do
     end
 
     it "imports the 2nd entry" do
-      book.import_from_csv("../models/entries.csv")
+      book.import_from_csv("entries.csv")
       # Check the second entry
       entry_two = book.entries[1]
        check_entry(entry_two, "Bob", "555-555-5415", "bob@blocmail.com")
     end
 
     it "imports the 3rd entry" do
-      book.import_from_csv("../models/entries.csv")
+      book.import_from_csv("entries.csv")
       # Check the third entry
       entry_three = book.entries[2]
 
@@ -93,7 +94,7 @@ RSpec.describe AddressBook do
     end
 
     it "imports the 4th entry" do
-      book.import_from_csv("../models/entries.csv")
+      book.import_from_csv("entries.csv")
       # Check the fourth entry
       entry_four = book.entries[3]
       check_entry(entry_four, "Sally", "555-555-4646", "sally@blocmail.com")
