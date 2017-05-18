@@ -90,6 +90,9 @@ class MenuController
   end
 
   def read_csv
+    puts "Enter CSV file name:"
+    file_name = gets.chomp
+    address_book.import_from_csv(file_name)
   end
 
   def view_entry_by_num
