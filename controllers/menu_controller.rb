@@ -15,7 +15,8 @@ class MenuController
     puts "3 - Search for an entry"
     puts "4 - View Entry Number n"
     puts "5 - Import entries from a CSV"
-    puts "6 - Exit"
+    puts "6 - Delete all entries"
+    puts "7 - Exit"
     print "Enter your selection: "
 
     # #3
@@ -42,12 +43,14 @@ class MenuController
         system "clear"
         read_csv
         main_menu
-
       when 6
+        system "clear"
+        wipe
+        main_menu
+      when 7
         puts "Good-bye!"
         # #8
         exit(0)
-
       else
         system "clear"
         puts "Sorry, that is not a valid input"
@@ -224,6 +227,23 @@ class MenuController
     # #6
     puts "Updated entry:"
     puts entry
+  end
+
+  def wipe
+    system "clear"
+    puts "Are you sure you want to delete all entries?"
+    yn = gets.chomp
+    if yn == "y" || "yes"
+      address_book.entries.clear
+      system "clear"
+      puts "All entries deleted, forever. Press enter to return to the main menu."
+      gets.chomp
+      system "clear"
+    else
+      puts "Nevermind, then. Press enter to return to the main menu."
+      gets.chomp
+      system "clear"
+    end
   end
 
 end
